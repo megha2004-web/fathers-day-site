@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Father and Daughter - Cake with Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+        height: auto;
+      }
+
+      .text-inner {
+        font-size: 24px;
+      }
+
+      .thoughts {
+        font-size: 16px;
+        max-width: 90vw;
+      }
+
+      .container, .text {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      img {
+        max-width: 90vw;
+        max-height: 50vh;
+      }
+
+      .cake {
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0.5; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .container {
+      animation: attract 3s infinite ease-in-out;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 300px;
+    }
+
+    @keyframes attract {
+      0% { transform: scale(1) translateY(0); filter: brightness(1) drop-shadow(0 0 0px #fff); }
+      50% { transform: scale(1) translateY(-5px); filter: brightness(1.1) drop-shadow(0 0 15px #ffccff); }
+      100% { transform: scale(1) translateY(0); filter: brightness(1) drop-shadow(0 0 0px #fff); }
+    }
+
+    img {
+      max-height: 90vh;
+      width: auto;
+      display: block;
+    }
+
+    .text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+    }
+
+    .text-inner {
+      font-size: 36px;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .text-inner span {
+      display: inline-block;
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      animation: rotateLetter 2s infinite linear;
+    }
+
+    .text-inner span:nth-child(even) { color: hotpink; }
+    .text-inner span:nth-child(odd) { color: cyan; }
+
+    @keyframes rotateLetter {
+      35% { transform: rotateZ(360deg); }
+      100% { transform: rotateZ(360deg); }
+    }
+
+    .cake {
+      margin-top: 10%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: float 2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .cake.fade-in {
+      opacity: 0;
+      animation:
+        fadeIn 1s ease forwards 7.5s,
+        float 2s ease-in-out infinite 8.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .tier {
+      height: 50px;
+      background: #fbb1d9;
+      border-radius: 15px 15px 5px 5px;
+      box-shadow: 0 6px 15px rgba(255, 182, 193, 0.6);
+      position: relative;
+    }
+
+    .tier.top {
+      width: 100px;
+      background: #ffe0f0;
+      margin-bottom: -10px;
+      z-index: 3;
+    }
+
+    .tier.middle {
+      width: 140px;
+      background: #ffcce5;
+      margin-bottom: -10px;
+      z-index: 2;
+    }
+
+    .icing {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      background: radial-gradient(circle, white 30%, transparent 70%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .candle {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 30px;
+      background: white;
+      border-radius: 2px;
+      box-shadow: 0 0 5px #fff;
+      z-index: 3;
+    }
+
+    .flame {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, yellow 40%, orange 60%, transparent 70%);
+      border-radius: 50%;
+      animation: flicker 0.2s infinite;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1); opacity: 1; }
+      50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    .thoughts {
+      margin-top: 40px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      max-width: 400px;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      color: #eee;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+      z-index: 2;
+    }
+
+    .thoughts p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Side Image -->
+  <div class="container">
+    <img src="father_daughter.png" alt="Father and Daughter">
+  </div>
+
+  <!-- Right Side Text + Cake -->
+  <div class="text">
+    <div class="text-inner fade-in" style="animation-delay: 6.0s;">
+      <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
+      <span> </span>
+      <span>F</span><span>A</span><span>T</span><span>H</span><span>E</span><span>R</span><span>'</span><span>S</span>
+      <span> </span>
+      <span>D</span><span>A</span><span>Y</span>
+    </div>
+
+    <div class="thoughts fade-in" style="animation-delay: 2.5s;">
+      <p>"He never said 'I love you' with words, but every action whispered it loudly."</p>
+      <p>"My father gave me the greatest gift anyone could give another person — he believed in me."</p>
+      <p>"A father's silent sacrifices speak louder than any poem ever written."</p>
+    </div>
+
+    <div class="cake fade-in" style="animation-delay: 7.5s; animation-fill-mode: forwards;">
+      <div class="tier top">
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+        <div class="icing"></div>
+      </div>
+      <div class="tier middle">
+        <div class="icing"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
